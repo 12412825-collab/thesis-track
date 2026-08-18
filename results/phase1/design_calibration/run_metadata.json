@@ -1,0 +1,28 @@
+{
+  "config_canonical_hash": "fef9a5cb6b20de9aa8d582c2228b7c3ff4136f3d536e7136157a3043a8e8f769",
+  "config_sha256": "7f012f1f170e3bffd953334eeca4e1422f1dc54aaed46e3a79646da9645c852a",
+  "contains_outcome_performance": false,
+  "experiment_id": "PHASE1-FAMILY-CAPACITY",
+  "git_branch": "codex/phase1-family-capacity",
+  "git_commit": "efb1477923ba5e483f58caed5682a0dbf1cd664b",
+  "git_status_porcelain": "?? Research_Status_Audit_Phase1.md\n?? experiments/PHASE-1/\n?? results/phase1/\n?? src/phase1_experiment.py\n?? src/phase1_models.py\n?? tests/test_phase1_models.py",
+  "logical_cpu_count": 16,
+  "mode": "capacity-calibration",
+  "packages": {
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "pyyaml": "6.0.3",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "",
+  "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+  "run_id": "PHASE1-FAMILY-CAPACITY-capacity-calibration-fef9a5cb6b20",
+  "source_manifest": {
+    "src\\phase1_experiment.py": "6a6a4bc67c8a72c9400e434cd2b99536e1e774cab0a44670b664365ff2ec239d",
+    "src\\phase1_models.py": "d9df1ad0b32c8e3d7fd1cbd83fd84b07f5644572dc6b9bba44613c84174050a0"
+  },
+  "started_at_utc": "2026-08-18T07:16:53.626129+00:00"
+}

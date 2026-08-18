@@ -1,0 +1,52 @@
+{
+  "config_canonical_hash": "fef9a5cb6b20de9aa8d582c2228b7c3ff4136f3d536e7136157a3043a8e8f769",
+  "config_sha256": "7f012f1f170e3bffd953334eeca4e1422f1dc54aaed46e3a79646da9645c852a",
+  "experiment_id": "PHASE1-FAMILY-CAPACITY",
+  "finished_at_utc": "2026-08-18T07:22:49.988215+00:00",
+  "fit_failure_fraction": 0.0,
+  "git_branch": "codex/phase1-family-capacity",
+  "git_commit": "efb1477923ba5e483f58caed5682a0dbf1cd664b",
+  "git_status_porcelain": "?? Methodology_PreRegistration_Phase1_Family_Capacity.md\n?? Research_Status_Audit_Phase1.md\n?? experiments/PHASE-1/\n?? results/phase1/\n?? src/phase1_experiment.py\n?? src/phase1_models.py\n?? src/phase1_validation.py\n?? src/phase1_wrong_line.py\n?? tests/test_phase1_models.py\n?? tests/test_phase1_validation.py",
+  "logical_cpu_count": 16,
+  "master_results_sha256": "674783d428965f1a3c97a8592aa49f48fbfa4d9be01a4acddf4d0a09ba5314b8",
+  "mode": "smoke",
+  "n_fit_records": 30,
+  "n_master_rows": 75,
+  "packages": {
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "pyyaml": "6.0.3",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "",
+  "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+  "result_contract": {
+    "actual_fits": 30,
+    "actual_rows": 75,
+    "capacity_order": {
+      "gradient_boosting": true,
+      "logistic_regression": true,
+      "mlp": true,
+      "random_forest": true,
+      "rbf_svm": true
+    },
+    "expected_fits": 30,
+    "expected_rows": 75,
+    "failures": [],
+    "max_gap_reconstruction_error": 0.0,
+    "passed": true
+  },
+  "run_id": "PHASE1-FAMILY-CAPACITY-smoke-fef9a5cb6b20",
+  "runtime_seconds": 18.72973850002745,
+  "smoke_gate_failures": [],
+  "source_manifest": {
+    "src\\phase1_experiment.py": "7bd936a119324656b6cc9d20361b51d3bcdcc0a125dd040011c055b557982ec6",
+    "src\\phase1_models.py": "d9df1ad0b32c8e3d7fd1cbd83fd84b07f5644572dc6b9bba44613c84174050a0",
+    "src\\phase1_validation.py": "32109a4cd7309f3098c70b915de8f146cbcef960a4178aa525b7a285a9d682de",
+    "src\\phase1_wrong_line.py": "a140acf835f1b09580c5f4a54053ed24ea7211dbde4c3f028c414649c0d26e86"
+  },
+  "started_at_utc": "2026-08-18T07:22:30.934713+00:00"
+}

@@ -1,0 +1,44 @@
+experiment:
+  id: EXP-002
+  name: training_shortcut_strength_sweep
+  description: Hold the baseline fixed and vary only training shortcut strength.
+
+data:
+  n_train: 5000
+  n_val: 2000
+  n_test: 3000
+  rho_train_values: [0.5, 0.7, 0.9]
+  rho_test_common: [0.3, 0.0, -0.3, -0.6, -0.9]
+  label_noise: 0.5
+  stable_coefficients: [1.2, -1.0, 0.8]
+
+seeds: [0, 1, 2, 3, 4]
+
+controls:
+  stable_only_max_abs_ood_gap_warning: 0.03
+
+models:
+  logistic_regression:
+    C: 1.0
+    max_iter: 1000
+  rbf_svm:
+    C: 1.0
+    gamma: scale
+    cache_size: 1000
+    calibration_cv: 3
+  random_forest:
+    n_estimators: 250
+    min_samples_leaf: 2
+    n_jobs: -1
+  gradient_boosting:
+    learning_rate: 0.08
+    max_iter: 200
+    max_leaf_nodes: 31
+    l2_regularization: 0.1
+  mlp:
+    hidden_layer_sizes: [64, 64]
+    alpha: 0.001
+    learning_rate_init: 0.001
+    max_iter: 250
+    early_stopping: true
+

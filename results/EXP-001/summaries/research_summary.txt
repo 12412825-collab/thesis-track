@@ -1,0 +1,29 @@
+SPURIOUS SHIFT V1 - AUTOMATED RESEARCH SUMMARY
+
+              model  validation_accuracy_mean  average_ood_accuracy_mean  worst_environment_accuracy_mean  ood_gap_mean  spurious_reliance_score_mean
+Logistic Regression                    0.9941                     0.6091                           0.2579        0.3851                        0.3736
+            RBF SVM                    0.9939                     0.6162                           0.2753        0.3778                        0.3634
+      Random Forest                    0.9900                     0.4833                           0.0601        0.5068                        0.4678
+  Gradient Boosting                    0.9909                     0.5208                           0.1003        0.4696                        0.4512
+                MLP                    0.9918                     0.6501                           0.3461        0.3413                        0.3238
+
+Best model according to IID validation: Logistic Regression
+Best model according to average OOD: MLP
+Best model according to worst-environment performance: MLP
+IID and OOD model-selection criteria do not all agree.
+
+Sanity-check warnings: none
+
+Questions for human interpretation:
+1. Which model achieves the highest IID accuracy?
+2. Which model is most robust to the spurious shift?
+3. Does model ranking change as rho changes?
+4. Which model has the largest OOD degradation?
+5. Which model relies most strongly on x_spurious?
+6. Is spurious reliance associated with OOD degradation?
+7. Does removing x_spurious remove most of the OOD gap?
+8. Are differences consistent across seeds?
+9. Which observations appear model-specific?
+10. Which observations may reflect a more general inductive-bias phenomenon?
+
+Interpretation warning: this synthetic experiment is descriptive and does not establish a universal model ranking or causal mechanism.

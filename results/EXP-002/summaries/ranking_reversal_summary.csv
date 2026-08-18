@@ -1,0 +1,4 @@
+rho_train,IID_best_model,OOD_best_model,worst_case_best_model,ranking_reversal
+0.5,logistic_regression,logistic_regression,logistic_regression,False
+0.7,logistic_regression,logistic_regression,logistic_regression,False
+0.9,logistic_regression,mlp,mlp,True

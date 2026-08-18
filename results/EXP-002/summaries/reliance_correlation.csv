@@ -1,0 +1,5 @@
+scope,rho_train,n_model_points,pearson_correlation
+all_rho_train,,15,0.9987296273924172
+within_rho_train,0.5,5,0.9653164204234816
+within_rho_train,0.7,5,0.9730292749674979
+within_rho_train,0.9,5,0.9950195966144921

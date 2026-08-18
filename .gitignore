@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.matplotlib/
+results/raw/*.csv
+results/summaries/*.csv
+results/summaries/*.txt
+results/figures/*.png
+results/figures/*.pdf
+results/EXP-002/smoke/

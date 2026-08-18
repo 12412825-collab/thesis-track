@@ -9,3 +9,4 @@ results/summaries/*.txt
 results/figures/*.png
 results/figures/*.pdf
 results/EXP-002/smoke/
+results/EXP-002V/smoke/

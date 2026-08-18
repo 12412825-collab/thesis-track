@@ -1,0 +1,8 @@
+{
+  "experiment_id": "EXP-002V",
+  "mode": "complete",
+  "runtime_seconds": 3356.28,
+  "bootstrap_resamples": 10000,
+  "replicates_default": 10,
+  "replicates_anchor": 20
+}

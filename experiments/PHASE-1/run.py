@@ -27,6 +27,11 @@ def parse_args() -> argparse.Namespace:
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--calibrate-capacity", action="store_true")
     mode.add_argument("--smoke", action="store_true")
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume a checkpointed complete grid and reuse an existing wrong-line guard.",
+    )
     return parser.parse_args()
 
 
@@ -52,5 +57,7 @@ if __name__ == "__main__":
         if failures:
             raise RuntimeError("Smoke wrong-line stop gate failed: " + "; ".join(failures))
     else:
-        run_wrong_line_guard(config, root / "summaries" / "wrong_line_guard.csv", smoke=False)
+        wrong_line_path = root / "summaries" / "wrong_line_guard.csv"
+        if not args.resume or not wrong_line_path.exists():
+            run_wrong_line_guard(config, wrong_line_path, smoke=False)
         run_phase1_grid(config, root, PROJECT_ROOT, smoke=False)

@@ -250,6 +250,23 @@ def _output_paths(output_root: Path) -> dict[str, Path]:
     return paths
 
 
+def _atomic_to_csv(table: pd.DataFrame, path: Path, attempts: int = 6) -> None:
+    """Checkpoint through same-directory atomic replacement with transient retries."""
+    temporary = path.with_name(path.name + ".tmp")
+    last_error: OSError | None = None
+    for attempt in range(attempts):
+        try:
+            table.to_csv(temporary, index=False)
+            os.replace(temporary, path)
+            return
+        except OSError as error:
+            last_error = error
+            temporary.unlink(missing_ok=True)
+            time.sleep(0.25 * (attempt + 1))
+    assert last_error is not None
+    raise last_error
+
+
 def _fit_id(experiment_id: str, rho_train: float, seed: int, entry: ModelConfiguration) -> str:
     return stable_hash(
         {
@@ -387,6 +404,19 @@ def run_phase1_grid(
     mode = "smoke" if smoke else "complete"
     started_at = datetime.now(timezone.utc).isoformat()
     metadata = build_run_metadata(config, project_root, mode, started_at)
+    previous_started_path = paths["summaries"] / "run_metadata.started.json"
+    if previous_started_path.exists():
+        try:
+            previous = json.loads(previous_started_path.read_text(encoding="utf-8"))
+            metadata["initial_started_at_utc"] = previous.get(
+                "initial_started_at_utc", previous.get("started_at_utc")
+            )
+            metadata["resume_count"] = int(previous.get("resume_count", 0)) + 1
+        except (OSError, ValueError, TypeError):
+            metadata["resume_count"] = 1
+    else:
+        metadata["initial_started_at_utc"] = started_at
+        metadata["resume_count"] = 0
     save_json(metadata, paths["summaries"] / "run_metadata.started.json")
     entries = load_registry(config)
     data = config["data"]
@@ -408,7 +438,23 @@ def run_phase1_grid(
     fit_rows = pd.read_csv(fit_checkpoint).to_dict("records") if fit_checkpoint.exists() else []
     result_rows = pd.read_csv(result_checkpoint).to_dict("records") if result_checkpoint.exists() else []
     generator_rows = pd.read_csv(generator_checkpoint).to_dict("records") if generator_checkpoint.exists() else []
-    completed = {str(row["fit_id"]) for row in fit_rows if row.get("status") == "success"}
+    result_counts: dict[str, int] = {}
+    result_status: dict[str, set[str]] = {}
+    for row in result_rows:
+        fit_id = str(row["fit_id"])
+        result_counts[fit_id] = result_counts.get(fit_id, 0) + 1
+        result_status.setdefault(fit_id, set()).add(str(row.get("status", "")))
+    completed: set[str] = set()
+    for row in fit_rows:
+        fit_id = str(row["fit_id"])
+        status = str(row.get("status", ""))
+        if status == "failed" and result_counts.get(fit_id) == 1:
+            completed.add(fit_id)
+        elif status == "success":
+            rho = float(row["rho_train"])
+            expected = 1 + sum(not np.isclose(value, rho) for value in rho_ood)
+            if result_counts.get(fit_id) == expected and result_status.get(fit_id) == {"success"}:
+                completed.add(fit_id)
     features = list(data["features"])
     run_started = time.perf_counter()
 
@@ -434,6 +480,10 @@ def run_phase1_grid(
                 base = _base_fit_record(metadata, entry, rho_train, seed)
                 if base["fit_id"] in completed:
                     continue
+                # Remove any half-committed copy before deterministically rerunning
+                # the affected scientific cell.
+                fit_rows = [row for row in fit_rows if str(row["fit_id"]) != base["fit_id"]]
+                result_rows = [row for row in result_rows if str(row["fit_id"]) != base["fit_id"]]
                 LOGGER.info("Phase1 %s rho=%s seed=%s config=%s", mode, rho_train, seed, entry.config_id)
                 fit_started = time.perf_counter()
                 try:
@@ -520,9 +570,9 @@ def run_phase1_grid(
                     )
                     LOGGER.exception("Fit failed: %s", base["fit_id"])
                 fit_rows.append(fit_record)
-                pd.DataFrame(fit_rows).to_csv(fit_checkpoint, index=False)
-                pd.DataFrame(result_rows).to_csv(result_checkpoint, index=False)
-                pd.DataFrame(generator_rows).to_csv(generator_checkpoint, index=False)
+                _atomic_to_csv(pd.DataFrame(fit_rows), fit_checkpoint)
+                _atomic_to_csv(pd.DataFrame(result_rows), result_checkpoint)
+                _atomic_to_csv(pd.DataFrame(generator_rows), generator_checkpoint)
 
     fits = add_empirical_capacity_index(pd.DataFrame(fit_rows))
     results = pd.DataFrame(result_rows)

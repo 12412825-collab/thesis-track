@@ -66,3 +66,5 @@ Future versions can add other controlled shifts through new data generators with
 
 - [`EXP-001`](experiments/EXP-001/README.md): frozen baseline spurious-correlation shift (`rho_train=0.9`).
 - [`EXP-002`](experiments/EXP-002/README.md): controlled training-shortcut-strength sweep (`rho_train=0.5, 0.7, 0.9`).
+- [`EXP-002V`](experiments/EXP-002V/README.md): preregistered paired-replicate verification with a no-shortcut control and calibrated reliance diagnostics.
+- [`Phase 1`](experiments/PHASE-1/README.md): 15-configuration family-vs-capacity study; G4a-C, **REVISE HYPOTHESIS**.

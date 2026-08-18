@@ -1,0 +1,2 @@
+scope,common_rho_values,family_incremental_r2,family_incremental_cv_r2,family_cv_rmse_reduction,interaction_incremental_cv_r2,variance_share_family,variance_share_family_x_rho,variance_share_rho
+common_ood_grid_post_hoc,"[-0.9, -0.6, -0.3, 0.3]",0.011890932848117153,0.015058209562694547,0.14911991263780655,0.02726832002204138,0.022821115008275623,0.026997533989809946,0.9367264989094434

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import hashlib
+from datetime import datetime, timezone
 import sys
 from pathlib import Path
 
@@ -26,6 +28,49 @@ from src.phase1_analysis import (
 )
 from src.phase1_plotting import make_all_figures
 from src.utils import load_config, save_json
+
+
+def common_ood_sensitivity(master: pd.DataFrame, fits: pd.DataFrame) -> tuple[pd.DataFrame, list[float]]:
+    """Post hoc Reviewer-2 check using only OOD rhos shared by every regime."""
+    successful = master.loc[master["status"].eq("success")]
+    sets = [
+        set(group.loc[group["environment_type"].eq("ood"), "rho_environment"].unique())
+        for _, group in successful.groupby("rho_train")
+    ]
+    common = sorted(set.intersection(*sets))
+    ood = successful.loc[
+        successful["environment_type"].eq("ood")
+        & successful["rho_environment"].isin(common)
+    ].groupby("fit_id")["accuracy"].mean()
+    iid = successful.loc[successful["environment_type"].eq("iid_test")].set_index("fit_id")["accuracy"]
+    common_fits = fits.copy().set_index("fit_id")
+    common_fits["iid_accuracy"] = iid
+    common_fits["average_ood_accuracy"] = ood
+    common_fits["ood_gap"] = iid - ood
+    common_fits = common_fits.reset_index()
+    metrics, _, _ = regression_models(common_fits)
+    indexed = metrics.set_index("model")
+    variance = variance_decomposition(common_fits, 500, 20260829).set_index("component")
+    output = pd.DataFrame(
+        [
+            {
+                "scope": "common_ood_grid_post_hoc",
+                "common_rho_values": json.dumps(common),
+                "family_incremental_r2": indexed.loc["M2", "r2"] - indexed.loc["M1", "r2"],
+                "family_incremental_cv_r2": indexed.loc["M2", "cv_r2"] - indexed.loc["M1", "cv_r2"],
+                "family_cv_rmse_reduction": 1.0 - indexed.loc["M2", "cv_rmse"] / indexed.loc["M1", "cv_rmse"],
+                "interaction_incremental_cv_r2": indexed.loc["M3", "cv_r2"] - indexed.loc["M2", "cv_r2"],
+                "variance_share_family": variance.loc["family", "variance_share"],
+                "variance_share_family_x_rho": variance.loc["family_x_rho", "variance_share"],
+                "variance_share_rho": variance.loc["rho_train", "variance_share"],
+            }
+        ]
+    )
+    return output, common
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 if __name__ == "__main__":
@@ -52,6 +97,7 @@ if __name__ == "__main__":
     envelope = robustness_envelope(fits)
     reversal, pairwise = ranking_reversal(fits)
     adjusted = adjusted_family_rho(fits)
+    common_sensitivity, common_rhos = common_ood_sensitivity(master, fits)
     thresholds = {
         key: float(config["statistics"][key])
         for key in [
@@ -76,6 +122,7 @@ if __name__ == "__main__":
         "ranking_reversal.csv": reversal,
         "pairwise_family_ordering.csv": pairwise,
         "adjusted_family_rho.csv": adjusted,
+        "common_ood_grid_sensitivity_post_hoc.csv": common_sensitivity,
     }
     for filename, table in outputs.items():
         table.to_csv(summaries / filename, index=False)
@@ -83,5 +130,33 @@ if __name__ == "__main__":
     make_all_figures(
         variance, adjusted, matching, envelope, reversal, wrong_line, root / "figures"
     )
+    analysis_metadata = {
+        "analysis_finished_at_utc": datetime.now(timezone.utc).isoformat(),
+        "master_results_sha256": sha256(root / "master_results.csv"),
+        "config_sha256": sha256(PROJECT_ROOT / "experiments" / "PHASE-1" / "config.yaml"),
+        "analysis_script_sha256": sha256(Path(__file__)),
+        "bootstrap_resamples": resamples,
+        "post_hoc_common_ood_rhos": common_rhos,
+        "g4a_decision": decision,
+    }
+    save_json(analysis_metadata, summaries / "analysis_metadata.json")
+    manifest_rows = []
+    for path in sorted(root.rglob("*")):
+        if not path.is_file() or path.name == "manifest.json" or ".partial." in path.name:
+            continue
+        manifest_rows.append(
+            {
+                "path": str(path.relative_to(PROJECT_ROOT)).replace("\\", "/"),
+                "size_bytes": path.stat().st_size,
+                "sha256": sha256(path),
+            }
+        )
+    save_json(
+        {
+            "experiment_id": config["experiment"]["id"],
+            "created_at_utc": datetime.now(timezone.utc).isoformat(),
+            "files": manifest_rows,
+        },
+        root / "manifest.json",
+    )
     print(json.dumps(decision, indent=2))
-

@@ -1,0 +1,15 @@
+{
+  "adequately_covered_practical_contrasts": 0,
+  "all_seed_fold_improvements_positive": true,
+  "branch": "G4a-C",
+  "criteria_A": false,
+  "criteria_B": false,
+  "decision": "REVISE HYPOTHESIS",
+  "family_cv_rmse_reduction": 0.1525772760978661,
+  "family_increment_bootstrap_lower": 0.010283858511181637,
+  "family_incremental_cv_r2": 0.015631016739981574,
+  "interaction_incremental_cv_r2": 0.02788199580248696,
+  "matched_or_stratified_practical_signal": false,
+  "minimum_leave_one_rho_incremental_cv_r2": 0.008566468874052435,
+  "wrong_line_gate_passed": true
+}

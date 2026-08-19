@@ -1,0 +1,7 @@
+{
+  "bridge_prereg_frozen_sha": "664d02a9f1c928713169866b2f5b3225b3554435",
+  "fits": 2,
+  "formal_statistics": false,
+  "sklearn_version": "1.9.0",
+  "status": "SMOKE_PASS"
+}

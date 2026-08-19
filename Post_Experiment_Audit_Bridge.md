@@ -1,10 +1,10 @@
 # Post-Experiment Audit — Phase-1 MLP-L on Frozen Phase-2 Task
 
-Audit status: **PASS**  
-Bridge preregistration SHA: `664d02a9f1c928713169866b2f5b3225b3554435`  
-Bridge preregistration tag: `bridge-phase1learner-phase2task-prereg-frozen`  
-Phase-2 task/reference preregistration SHA: `654e72b39310847b0d369796c31825e379aaf909`  
-Formal output: `results/bridge_p1mlp_l/`  
+Audit status: **PASS**
+Bridge preregistration SHA: `664d02a9f1c928713169866b2f5b3225b3554435`
+Bridge preregistration tag: `bridge-phase1learner-phase2task-prereg-frozen`
+Phase-2 task/reference preregistration SHA: `654e72b39310847b0d369796c31825e379aaf909`
+Formal output: `results/bridge_p1mlp_l/`
 Phase 3: **NOT RUN**
 
 ## 1. Scope and data sources
@@ -72,4 +72,3 @@ Frozen Bridge decision: **Case B — FIDELITY IS NOT THE APPROPRIATE CORE BEHAVI
 ## 8. Claims not permitted
 
 The Bridge does not support claims that Adam caused collapse, that early stopping, scaling, width 16, or any sklearn default is the operative cause, that Phase 2 Q1/Q2/Q3 were invalid, that 0.72225 should have reappeared, or that the result generalizes across model families, optimizers, datasets, geometries, or shifts.
-

@@ -1,7 +1,7 @@
 # Bridge Results — Phase-1 MLP-L Learner on the Frozen Phase-2 Task
 
-Status: **FORMAL RUN COMPLETE — Case B / STOP Fidelity-collapse line**  
-Bridge preregistration: `664d02a9f1c928713169866b2f5b3225b3554435`  
+Status: **FORMAL RUN COMPLETE — Case B / STOP Fidelity-collapse line**
+Bridge preregistration: `664d02a9f1c928713169866b2f5b3225b3554435`
 Phase-2 reference preregistration: `654e72b39310847b0d369796c31825e379aaf909`
 
 ## 1. Question and frozen task
@@ -94,4 +94,3 @@ Strongest negative result: there is no practical learner-dependent Fidelity coll
 Fidelity line: **STOP**.
 
 Recommended next scientific question: **Can shortcut acquisition/use and OOD failure be predicted directly by a preregistered Behavior metric on the same frozen task, without using neutral-slice Fidelity as its proxy?**
-

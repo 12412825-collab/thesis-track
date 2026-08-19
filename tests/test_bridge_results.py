@@ -63,4 +63,3 @@ def test_frozen_decision_is_case_b_and_not_case_a_or_c() -> None:
     assert r9_raw["final_ood_gap"].mean() >= 0.30
     assert not (r9["mean"] >= 0.05 and r9["bootstrap_ci95_low"] > 0 and r9["positive_over_0p02_count"] >= 15)
     assert not (r0["mean"] >= 0.05 and r0["bootstrap_ci95_low"] > 0)
-

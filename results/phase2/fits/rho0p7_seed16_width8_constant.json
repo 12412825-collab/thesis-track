@@ -1,0 +1,141 @@
+{
+  "batch_size": 64,
+  "cosine_terminal_lr": 0.001,
+  "dataset_seed": 16,
+  "epochs": 200,
+  "fidelity_drop_from_20": 0.0022499999999999742,
+  "fidelity_min": 0.988,
+  "fidelity_recovery": 0.0,
+  "final_ood_gap": 0.16973333333333332,
+  "fit_id": "rho0p7_seed16_width8_constant",
+  "fit_seconds": 1.8345883000001777,
+  "init_seed": 3171171985,
+  "initial_lr": 0.01,
+  "momentum": 0.9,
+  "n_iid_test": 3000,
+  "n_probe": 4000,
+  "n_train": 5000,
+  "n_validation": 2000,
+  "ood": [
+    {
+      "accuracy": 0.6646666666666666,
+      "ood_gap": 0.28733333333333333,
+      "rho_ood": -0.9
+    },
+    {
+      "accuracy": 0.7426666666666667,
+      "ood_gap": 0.20933333333333326,
+      "rho_ood": -0.6
+    },
+    {
+      "accuracy": 0.7746666666666666,
+      "ood_gap": 0.17733333333333334,
+      "rho_ood": -0.3
+    },
+    {
+      "accuracy": 0.842,
+      "ood_gap": 0.10999999999999999,
+      "rho_ood": 0.0
+    },
+    {
+      "accuracy": 0.8873333333333333,
+      "ood_gap": 0.06466666666666665,
+      "rho_ood": 0.3
+    }
+  ],
+  "prereg_frozen_sha": "654e72b39310847b0d369796c31825e379aaf909",
+  "rho_train": 0.7,
+  "sat": Infinity,
+  "schedule": "constant",
+  "shuffle_seed": 2097863080,
+  "status": "SUCCESS",
+  "terminal_d3": 0.3,
+  "terminal_fidelity": 0.988,
+  "terminal_iid_accuracy": 0.952,
+  "terminal_train_loss": 0.1094305633300984,
+  "trajectory": [
+    {
+      "checkpoint": 20,
+      "d3": 0.306,
+      "fidelity": 0.99025,
+      "iid_accuracy": 0.953,
+      "learning_rate": 0.01,
+      "train_loss": 0.11203120101221516
+    },
+    {
+      "checkpoint": 40,
+      "d3": 0.30033333333333334,
+      "fidelity": 0.9915,
+      "iid_accuracy": 0.9516666666666667,
+      "learning_rate": 0.01,
+      "train_loss": 0.11076961221561678
+    },
+    {
+      "checkpoint": 60,
+      "d3": 0.301,
+      "fidelity": 0.9905,
+      "iid_accuracy": 0.9513333333333334,
+      "learning_rate": 0.01,
+      "train_loss": 0.11023274358780837
+    },
+    {
+      "checkpoint": 80,
+      "d3": 0.301,
+      "fidelity": 0.99125,
+      "iid_accuracy": 0.952,
+      "learning_rate": 0.01,
+      "train_loss": 0.10998247920201588
+    },
+    {
+      "checkpoint": 100,
+      "d3": 0.2986666666666667,
+      "fidelity": 0.99,
+      "iid_accuracy": 0.952,
+      "learning_rate": 0.01,
+      "train_loss": 0.10974760310912475
+    },
+    {
+      "checkpoint": 120,
+      "d3": 0.2996666666666667,
+      "fidelity": 0.99125,
+      "iid_accuracy": 0.9516666666666667,
+      "learning_rate": 0.01,
+      "train_loss": 0.10969638573748228
+    },
+    {
+      "checkpoint": 140,
+      "d3": 0.297,
+      "fidelity": 0.99,
+      "iid_accuracy": 0.9516666666666667,
+      "learning_rate": 0.01,
+      "train_loss": 0.10960061836556383
+    },
+    {
+      "checkpoint": 160,
+      "d3": 0.299,
+      "fidelity": 0.98975,
+      "iid_accuracy": 0.951,
+      "learning_rate": 0.01,
+      "train_loss": 0.10958323210205136
+    },
+    {
+      "checkpoint": 180,
+      "d3": 0.2986666666666667,
+      "fidelity": 0.99075,
+      "iid_accuracy": 0.9516666666666667,
+      "learning_rate": 0.01,
+      "train_loss": 0.10946017355097941
+    },
+    {
+      "checkpoint": 200,
+      "d3": 0.3,
+      "fidelity": 0.988,
+      "iid_accuracy": 0.952,
+      "learning_rate": 0.01,
+      "train_loss": 0.1094305633300984
+    }
+  ],
+  "trajectory_class": "No-acquisition / no-distortion",
+  "weight_decay": 0.0001,
+  "width": 8
+}

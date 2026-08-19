@@ -1,0 +1,18 @@
+check,status,severity,evidence
+fit count,PASS,HIGH,"observed=360, expected=360"
+fit ID uniqueness,PASS,HIGH,duplicates=0
+fit ID coverage,PASS,HIGH,"missing=0, unexpected=0"
+fit status,PASS,HIGH,"success=360, failed=0"
+checkpoint row count,PASS,HIGH,"observed=3600, expected=360 fits x 10 checkpoints"
+checkpoint completeness,PASS,HIGH,every successful fit has exactly the 10 preregistered checkpoints
+OOD row count,PASS,HIGH,"observed=1680, expected=120*5 + 120*5 + 120*4"
+terminal numeric finiteness,PASS,HIGH,"rows=360, columns=terminal_fidelity,terminal_d3,terminal_train_loss,terminal_iid_accuracy,final_ood_gap"
+trajectory numeric finiteness,PASS,HIGH,rows=3600
+fidelity range,PASS,HIGH,"min=0.925750, max=0.996250"
+D3 range,PASS,HIGH,"min=0.005000, max=0.809667"
+schedule pairing,PASS,HIGH,pairing_failures=[]
+protocol constants,PASS,HIGH,unexpected_values={}
+prereg SHA traceability,PASS,HIGH,unique_sha=['654e72b39310847b0d369796c31825e379aaf909']
+no hidden model arms,PASS,HIGH,only frozen width and schedule arms are present
+runtime outliers recorded,PASS,LOW,"outlier_count=4, max_seconds=552.657"
+manifest hashes,PASS,HIGH,mismatches=[]

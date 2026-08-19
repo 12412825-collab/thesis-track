@@ -1,0 +1,11 @@
+{
+  "expected_fits": 360,
+  "failed_fits": 0,
+  "fit_seconds_max": 552.6574830000009,
+  "fit_seconds_mean": 9.0411732177778,
+  "fit_seconds_total": 3254.822358400008,
+  "formal_expected_fits": 360,
+  "prereg_frozen_sha": "654e72b39310847b0d369796c31825e379aaf909",
+  "smoke": false,
+  "successful_fits": 360
+}

@@ -1,0 +1,5 @@
+guard,status,train_loss_range,fidelity_range
+IID-match,PASS,,
+rho=0 sanity,PASS,,
+width ladder,PASS,,
+width ladder diagnostics,PASS,0.022368611148050443,0.012418750000000034

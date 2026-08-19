@@ -1,0 +1,17 @@
+{
+  "decision": {
+    "decision": "Both weak / STOP",
+    "guard_blocked": false,
+    "rationale": "Both high-rho schedule and width-regime effects were below the preregistered 0.02 gate while guards passed."
+  },
+  "expected_fits": 360,
+  "failed_fits": 0,
+  "no_phase3_started": true,
+  "observed_fit_records": 360,
+  "prereg_frozen_sha": "654e72b39310847b0d369796c31825e379aaf909",
+  "primary_endpoint": "Fidelity(200)",
+  "successful_fits": 360,
+  "trajectory_class_counts": {
+    "No-acquisition / no-distortion": 360
+  }
+}

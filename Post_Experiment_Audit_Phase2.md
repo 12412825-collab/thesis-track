@@ -72,7 +72,9 @@ The high-rho interaction ranges were 0.00182 to 0.00675. No direction change occ
 
 ## G. Trajectory evidence
 
-All 360 trajectories were No-acquisition / no-distortion. SAT was infinity for all fits. No trajectory satisfied both the ≥0.05 early fidelity drop and ≥0.05 terminal recovery requirements for Escape-shaped classification.
+All 360 trajectories were No-acquisition / no-distortion under the frozen Fidelity-first classifier. The raw SAT distribution is: rho=0.0, 120/120 infinity; rho=0.7, 120/120 infinity; rho=0.9, 120/120 SAT=40. At rho=0.9, mean D3 was 0.7479 at checkpoint 20 and 0.7415 at checkpoint 200, so shortcut sensitivity was present even though no trajectory satisfied both the ≥0.05 early Fidelity drop and ≥0.05 terminal recovery requirements for Escape-shaped classification.
+
+Interpretation note: `No-acquisition / no-distortion` is a preregistered Fidelity-first trajectory label and must not be interpreted as absence of shortcut acquisition when D3/SAT show otherwise. It denotes that the preregistered Fidelity collapse/recovery trajectory was not observed.
 
 ## H. Strongest alternative explanation
 
@@ -82,7 +84,7 @@ The strongest attack is that the selected task/training regime may be too benign
 
 **NOT ESTABLISHED**
 
-The data and code pass the integrity audit, but neither schedule/path residual nor width/capacity-regime residual reached the preregistered practical scale, and the Fidelity-first trajectory evidence did not show acquisition followed by recovery.
+The data and code pass the integrity audit, but neither schedule/path residual nor width/capacity-regime residual reached the preregistered practical scale, and the Fidelity-first trajectory evidence did not show preregistered Fidelity collapse followed by recovery.
 
 ## Audit artifacts
 

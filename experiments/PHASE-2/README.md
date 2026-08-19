@@ -31,6 +31,7 @@ The runner writes one JSON record per fit under `results/phase2/fits/` and resum
 - Q2 width-regime range: below the 0.02 negligible gate at both high-rho values
 - Q3 interaction range: below 0.02; no direction change across widths
 - 360/360 trajectories: `No-acquisition / no-distortion`
+- Interpretation note: this is a preregistered Fidelity-first label, not evidence that shortcut acquisition was absent. Raw results show SAT=40 for all 120 rho=0.9 fits and mean D3 approximately 0.742–0.748 across checkpoints.
 - Frozen decision: `Both weak / STOP`
 - Reviewer-2 verdict: `NOT ESTABLISHED`
 - Phase 3: not started

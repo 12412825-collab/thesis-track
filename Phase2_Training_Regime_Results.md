@@ -79,6 +79,8 @@ All 360 formal trajectories were classified as **No-acquisition / no-distortion*
 
 No trajectory met the required early fidelity drop and subsequent ≥0.05 recovery for an Escape-shaped label. D3 decline alone was not used as an escape label.
 
+Interpretation note: `No-acquisition / no-distortion` is a preregistered Fidelity-first trajectory label and must not be interpreted as absence of shortcut acquisition when D3/SAT show otherwise. The raw SAT distribution is infinity for all 120 rho=0.0 fits, infinity for all 120 rho=0.7 fits, and SAT=40 for all 120 rho=0.9 fits; rho=0.9 mean D3 remains approximately 0.742–0.748 across checkpoints. The label therefore means that the preregistered Fidelity collapse/recovery trajectory was not observed, not that the model failed to acquire shortcut sensitivity.
+
 ## 8. D3 trajectories
 
 D3 was retained as a descriptive shortcut-sensitivity process measure. It was not promoted to a primary endpoint or used alone to claim escape. The four minimal figures are in `results/phase2/figures/`.
@@ -116,7 +118,7 @@ We cannot claim general optimizer superiority, pure effective-capacity causality
 - **Task:** existing spurious-correlation generator with `rho_train ∈ {0.7, 0.9}` and rho=0 sanity.
 - **Mechanism:** fixed MLP training regime `(width / capacity-regime, LR time-profile)`.
 - **Behavior:** terminal neutral-probe boundary fidelity, plus D3 and trajectory diagnostics.
-- **Observed link:** the tested interventions produced only small residuals and no Fidelity-first acquisition/recovery pattern.
+- **Observed link:** the tested interventions produced only small residuals and no preregistered Fidelity collapse/recovery pattern.
 
 ## Mechanism map
 
